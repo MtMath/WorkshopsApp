@@ -1,0 +1,47 @@
+﻿services:
+  workshop-app:
+    container_name: workshop-app
+    build:
+      context: ./Workshops.Web
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    links:
+      - sqlserver
+    depends_on:
+      - sqlserver
+    networks:
+      - backend
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      MSSQL_SA_PASSWORD: "Worksh0p@dmin"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  grafana-data:
+  sqlserver-data:
+
+networks:
+  backend:
+    driver: bridge
