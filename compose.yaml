@@ -16,8 +16,10 @@
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
+    env_file:
+      - .env.dev
     environment:
-      MSSQL_SA_PASSWORD: "Worksh0p@dmin"
+      MSSQL_SA_PASSWORD: ${DB_PASS}
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
@@ -26,6 +28,9 @@
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
+    profiles:
+      - monitoring
     ports:
       - "9090:9090"
     volumes:
@@ -33,6 +38,9 @@
 
   grafana:
     image: grafana/grafana
+    container_name: grafana
+    profiles:
+      - monitoring
     ports:
       - "3000:3000"
     volumes:
