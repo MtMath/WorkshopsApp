@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using Workshops.Infrastructure.Identity;
 
 namespace Workshops.Web.CrossCutting;
 
@@ -43,5 +44,16 @@ public static class AppExtensions
             options.GroupNameFormat = "'v'V";
             options.SubstituteApiVersionInUrl = true;
         });
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="app"></param>
+    public static void MapIdentityGroup(this WebApplication app)
+    {
+        app.MapGroup("api/v{api:apiVersion}/account")
+            .WithApiVersionSet()
+            .MapIdentityApi<AppUser>();
     }
 }
