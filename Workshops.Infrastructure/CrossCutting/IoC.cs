@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Workshops.Domain.Entities;
 using Workshops.Domain.Interfaces;
 using Workshops.Infrastructure.Data;
 using Workshops.Infrastructure.Identity;
