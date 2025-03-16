@@ -24,6 +24,19 @@ public static class IoC
     private static void AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("SQLConnection");
+
+        // Application Configuration Section
+        services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseSqlServer(connectionString, builder =>
+            {
+                builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "Application");
+                builder.EnableRetryOnFailure(3);
+            });
+
+            options.EnableSensitiveDataLogging();
+        });
+
         // Identity Configuration Section
         services.AddDbContext<AppIdentityDbContext>(options =>
         {
