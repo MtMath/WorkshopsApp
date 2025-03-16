@@ -76,6 +76,12 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
 
         await workshopsRepository.Insert(workshop);
         await workshopsRepository.SaveChangesAsync();
+        
+        //TODO: Send a command to generate attendance sheets for this workshop
+        //Now I can generate Attendance Sheets for this workshop, since it was created successfully
+        //This is a good moment (example) to use the MediatR library to send a command to another handler
+        
+        //TODO: For now Generate a AttendanceRecordService for simplicity
 
         return workshop;
     }
