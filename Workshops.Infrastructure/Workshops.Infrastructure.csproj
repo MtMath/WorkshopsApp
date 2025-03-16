@@ -10,6 +10,7 @@
       <Folder Include="CrossCutting\Options\" />
       <Folder Include="Data\Configs\" />
       <Folder Include="Data\Migrations\" />
+      <Folder Include="Data\Migrations\Identity\" />
     </ItemGroup>
 
     <ItemGroup>
