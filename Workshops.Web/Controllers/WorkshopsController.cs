@@ -32,9 +32,12 @@ public class WorkshopsController(WorkshopsService workshopsService) : Controller
     [HttpGet("{id:int}", Order = 2), AllowAnonymous]
     [ProducesResponseType(typeof(GenericResponseDto<WorkshopsEntity>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(int id)
+    public async Task<ActionResult<GenericResponseDto<WorkshopsEntity>>> Get(int id)
     {
         var workshop = await workshopsService.GetWorkshopByIdAsync(id);
+        
+        if (workshop == null)
+            return NotFound();
         
         var response = new GenericResponseDto<WorkshopsEntity>
         {
