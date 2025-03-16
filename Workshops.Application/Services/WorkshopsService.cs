@@ -46,9 +46,9 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
         var slug = SlugHelper.GenerateSlug(workshopDto.Title);
         var uniqueSlug = slug;
 
-        //Adds a counter to the slug if it already exists ( like nonce with RNG )
+        //Adds a counter to the slug if it already exists ( like nonce in RNG )
         var slugExists = await workshopsRepository.GetQueryable()
-            .AnyAsync(w => w.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
+            .AnyAsync(w => w.Slug.Equals(slug));
 
         if (slugExists)
         {
@@ -61,7 +61,7 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
                 uniqueSlug = $"{slug}-{counter}";
                 counter++;
                 slugExists = await workshopsRepository.GetQueryable()
-                    .AnyAsync(w => w.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
+                    .AnyAsync(w => w.Slug.Equals(uniqueSlug));
             } while (slugExists);
         }
 
@@ -86,7 +86,7 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
         return workshop;
     }
     
-    public async Task UpdateWorkshopAsync(int id, WorkshopRequestDto workshopDto)
+    public async Task<WorkshopsEntity> UpdateWorkshopAsync(int id, WorkshopRequestDto workshopDto)
     {
         var workshop = await GetWorkshopByIdAsync(id);
         if (workshop == null)
@@ -103,6 +103,8 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
 
         workshopsRepository.Update(workshop);
         await workshopsRepository.SaveChangesAsync();
+
+        return workshop;
     }
     
     public async Task DeleteWorkshopAsync(int id)
