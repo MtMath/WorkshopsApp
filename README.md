@@ -1,3 +1,4 @@
+[![Semantic Versioning](https://github.com/MtMath/WorkshopsApp/actions/workflows/semantic-versioning.yml/badge.svg)](https://github.com/MtMath/WorkshopsApp/actions/workflows/semantic-versioning.yml)
 
 ER Diagram
 ![drawSQL-database-2025-03-16.png](.assets/drawSQL-database-2025-03-16.png)
