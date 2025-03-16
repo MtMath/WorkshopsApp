@@ -28,4 +28,8 @@ public sealed class WorkshopsEntity : Entity
     /// Maximum number of attendees
     /// </summary>
     public int? Capacity { get; set; }
+    /// <summary>
+    /// Gets or sets the attendees of the workshop.
+    /// </summary>
+    public ICollection<AttendeesRecordEntity> Attendees { get; set; }
 }

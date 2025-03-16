@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using Workshops.Domain.Common;
 
-namespace WorkshopsApp.Domain.Entities;
+namespace Workshops.Domain.Entities;
 
 /// <summary>
-/// Represents a collaborator in the system, who can attend workshops.
+/// Represents a collaborator in the workshops system, who can attend workshops.
 /// </summary>
 public sealed class CollaboratorEntity : Entity
 {
@@ -13,4 +13,8 @@ public sealed class CollaboratorEntity : Entity
     /// </summary>
     [Required, MaxLength(126)] public required string Name { get; set; }
 
+    /// <summary>
+    /// Gets or sets the collection of attendance records associated with the collaborator.
+    /// </summary>
+    public ICollection<AttendeesRecordEntity> Attendances { get; set; }
 }
