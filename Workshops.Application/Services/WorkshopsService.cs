@@ -48,7 +48,7 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
 
         //Adds a counter to the slug if it already exists ( like nonce with RNG )
         var slugExists = await workshopsRepository.GetQueryable()
-            .AnyAsync(w => w.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
+            .AnyAsync(w => w.Slug.Equals(slug));
 
         if (slugExists)
         {
@@ -61,7 +61,7 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
                 uniqueSlug = $"{slug}-{counter}";
                 counter++;
                 slugExists = await workshopsRepository.GetQueryable()
-                    .AnyAsync(w => w.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
+                    .AnyAsync(w => w.Slug.Equals(uniqueSlug));
             } while (slugExists);
         }
 
