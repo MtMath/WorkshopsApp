@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Workshops.Domain.Entities;
 using Workshops.Domain.Interfaces;
 using Workshops.Infrastructure.Data;
 using Workshops.Infrastructure.Identity;
@@ -54,6 +55,7 @@ public static class IoC
     private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IRepository<WorkshopsEntity>, Repository<WorkshopsEntity>>();
     }
 
     private static void AddIdentity(this IServiceCollection services, IConfiguration configuration)
