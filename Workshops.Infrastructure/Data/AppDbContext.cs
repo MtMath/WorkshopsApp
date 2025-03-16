@@ -31,6 +31,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 .IsRequired();
             entity.Property(e => e.RealizationDate)
                 .IsRequired();
+            entity.Property(e => e.Capacity)
+                .IsRequired(false);
+            entity.Property(e => e.CreatedAt)
+                .ValueGeneratedOnAdd();
+            entity.Property(e => e.UpdatedAt)
+                .ValueGeneratedOnUpdate();
         });
         
         modelBuilder.Entity<CollaboratorEntity>(entity =>
@@ -39,6 +45,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             entity.Property(e => e.Name)
                 .HasMaxLength(126)
                 .IsRequired();
+            entity.Property(e => e.CreatedAt)
+                .ValueGeneratedOnAdd();
+            entity.Property(e => e.UpdatedAt)
+                .ValueGeneratedOnUpdate();
         });
 
         modelBuilder.Entity<AttendeesRecordEntity>(entity =>
@@ -50,6 +60,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             entity.HasOne(e => e.Collaborator)
                 .WithMany(e => e.Attendances)
                 .HasForeignKey(e => e.CollaboratorId);
+            entity.Property(e => e.CreatedAt)
+                .ValueGeneratedOnAdd();
+            entity.Property(e => e.UpdatedAt)
+                .ValueGeneratedOnUpdate();
         });
         
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
