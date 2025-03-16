@@ -1,8 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Workshops.Application.Services;
-using Workshops.Domain.Entities;
-using Workshops.Domain.Interfaces;
-using Workshops.Infrastructure.Repositories;
 
 namespace Workshops.Application;
 
