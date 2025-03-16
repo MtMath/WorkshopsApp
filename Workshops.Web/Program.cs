@@ -1,17 +1,17 @@
-using Workshops.Infrastructure.CrossCutting;
-using Workshops.Infrastructure.Identity;
+using Workshops.Web.Utils;
 using Workshops.Web.CrossCutting;
 using Workshops.Web.CrossCutting.Options;
-using Workshops.Web.Utils;
+using Workshops.Infrastructure.CrossCutting;
+using Workshops.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
 
+builder.Services.AddInfrastructureLayer(builder.Configuration);
 
-builder.Services.AddControllers(options =>
-{
-    options.Conventions.Add(new RoutePrefixConvention("api"));
-});
+builder.Services.AddExceptionHandler<AppExceptionHandler>();
+builder.Services.AddProblemDetails();
+
+builder.Services.AddControllers(options => options.Conventions.Add(new RoutePrefixConvention("api")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApiVersioningExtension();
@@ -22,11 +22,14 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseSwaggerExtension();
+
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapIdentityGroup();
+    
 await app.RunAsync();
