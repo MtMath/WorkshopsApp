@@ -1,3 +1,4 @@
+using Workshops.Application;
 using Workshops.Web.Utils;
 using Workshops.Web.CrossCutting;
 using Workshops.Web.CrossCutting.Options;
@@ -6,7 +7,9 @@ using Workshops.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructureLayer(builder.Configuration);
+builder.Services
+    .AddApplicationLayer()
+    .AddInfrastructureLayer(builder.Configuration);
 
 builder.Services.AddExceptionHandler<AppExceptionHandler>();
 builder.Services.AddProblemDetails();
