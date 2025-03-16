@@ -16,6 +16,7 @@ public static class IoC
         IConfiguration configuration)
     {
         services.AddDbContexts(configuration);
+        services.AddRepositories();
         services.AddIdentity(configuration);
 
         return services;
@@ -49,6 +50,12 @@ public static class IoC
             options.EnableSensitiveDataLogging();
         });
     }
+
+    private static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+    }
+
     private static void AddIdentity(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(options =>
