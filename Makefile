@@ -51,7 +51,7 @@ migration-identity:
 
 migration-rollback:
 	@echo "Removing last migration..."
-	@dotnet ef migrations remove --project ./Workshops.Infrastructure --startup-project ./Workshops.Web
+	@dotnet ef migrations remove --context $(CONTEXT) --project ./Workshops.Infrastructure --startup-project ./Workshops.Web
 	@echo "Last migration removed successfully."
 
 drop-db:
