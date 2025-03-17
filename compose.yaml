@@ -2,7 +2,7 @@
   workshop-app:
     container_name: workshop-app
     build:
-      context: ./Workshops.Web
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8080:80"
