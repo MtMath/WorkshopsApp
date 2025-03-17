@@ -84,7 +84,6 @@ Para aplicar as migrações do Entity Framework Core, execute os seguintes coman
 make migrate
 ```
 
-
 ### Payloads de Exemplo
 
 GET Workshops
@@ -144,3 +143,16 @@ GET Collaborators
   "timestamp": "2025-03-17T12:16:06.409Z"
 }
 ```
+
+### Roadmap
+
+1. Logging Infrastructure
+2. CQRS Implementation
+3. Prometheus Monitoring
+4. Grafana Dashboards
+
+### Known Issues
+
+- Validação do comprimento do slug: slugs que excedem 50 caracteres disparam erros de inserção no banco de dados. O sistema atual não tem validação adequada para evitar esse problema.
+- Implementação de slug não utilizada: o sistema tem um campo slug definido no esquema do banco de dados, mas ele não está sendo usado atualmente na funcionalidade de roteamento ou geração de URL.
+- ...
