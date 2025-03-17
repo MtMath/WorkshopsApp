@@ -12,7 +12,7 @@ namespace Workshops.Web.Controllers
     /// 
     /// </summary>
     [ApiController, Route("v{api:apiVersion}/[controller]", Name = "Collaborators"), ApiVersion("1.0")]
-    public class CollaboratorController(CollaboratorService collaboratorService) : ControllerBase
+    public class CollaboratorsController(CollaboratorService collaboratorService) : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(typeof(GenericResponseDto<List<CollaboratorEntity>>), StatusCodes.Status200OK)]
