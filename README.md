@@ -62,6 +62,11 @@ A solução está organizada em quatro projetos principais, seguindo o padrão d
 2. **Configurar variáveis de ambiente**:
     - Copie os envs para `.env` e preencha os valores necessários (ex.: string de conexão com o banco de dados).
 
+    ```bash
+    // .env
+    DB_PASS="PASSWORD"
+    ```
+
 3. **Build e execução com Docker Compose**:
    ```bash
    docker-compose up --build
