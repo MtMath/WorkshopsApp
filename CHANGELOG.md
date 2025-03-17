@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/MtMath/WorkshopsApp/compare/v1.1.0...v1.2.0) (2025-03-17)
+
+
+### Features
+
+* **Migration:** Add Db Contexts Initializer to migrations ([d929e2e](https://github.com/MtMath/WorkshopsApp/commit/d929e2ece7e666bfad1b7e6087e4681f0a5f26b9))
+* **Migration:** Add injections for migrate ([468aa91](https://github.com/MtMath/WorkshopsApp/commit/468aa9158c02e5d915f3a550e1a0fb60f4721103))
+
 # [1.1.0](https://github.com/MtMath/WorkshopsApp/compare/v1.0.0...v1.1.0) (2025-03-17)
 
 
