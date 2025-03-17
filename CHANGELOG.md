@@ -1,3 +1,28 @@
+# [1.1.0](https://github.com/MtMath/WorkshopsApp/compare/v1.0.0...v1.1.0) (2025-03-17)
+
+
+### Bug Fixes
+
+* Change Slug to Attedend property ([af86d1e](https://github.com/MtMath/WorkshopsApp/commit/af86d1ecce75fa3bcaf5170ae4bb8a74b55bdbfb))
+* Remove sealed from Entities ([a641557](https://github.com/MtMath/WorkshopsApp/commit/a64155790ad13d18c796e818ceeb3617b6251fa2))
+* Return entity in Put operations ([b3f432a](https://github.com/MtMath/WorkshopsApp/commit/b3f432ac2f48071df8323da34841d57ef491dafc))
+* Update relationship ids ([77f8616](https://github.com/MtMath/WorkshopsApp/commit/77f8616ee2330736f4a0c340bac0352d69a374b5))
+
+
+### Features
+
+* Add Attendees Consult Endpoint ([bbe1a8a](https://github.com/MtMath/WorkshopsApp/commit/bbe1a8ab575e3dbebf1f4bf7dc351479fa685194))
+* **Controller:** Add AttendeesRecord Controller ([59e2a76](https://github.com/MtMath/WorkshopsApp/commit/59e2a760d610678b7bd698e446d3d3ee9f388652))
+* **Migration:** Add AttendeesRecord index migration ([1d7c5ab](https://github.com/MtMath/WorkshopsApp/commit/1d7c5abc7b74a95ec07d3f72db4789a9eda58712))
+* Add AttendeesRecords Service ([0985e8b](https://github.com/MtMath/WorkshopsApp/commit/0985e8be61096e4c7255f386258cb91da50045f5))
+* **Controller:** Add Collaborator Controller ([1d6be60](https://github.com/MtMath/WorkshopsApp/commit/1d6be60689a7cd98fba58468388dfb3218c6f4e4))
+* **Controller:** Add Collaborator Controller ([fe5ad23](https://github.com/MtMath/WorkshopsApp/commit/fe5ad23dba1e4ff7b83550810c4676cd74da160f))
+
+
+### Performance Improvements
+
+* Add way to filter data by repository ([b607d55](https://github.com/MtMath/WorkshopsApp/commit/b607d55a77e262eaf3232938b73c1ee9df706cee))
+
 # 1.0.0 (2025-03-16)
 
 
