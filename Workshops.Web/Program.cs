@@ -3,6 +3,7 @@ using Workshops.Web.Utils;
 using Workshops.Web.CrossCutting;
 using Workshops.Web.CrossCutting.Options;
 using Workshops.Infrastructure.CrossCutting;
+using Workshops.Infrastructure.Data;
 using Workshops.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,11 @@ builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// This used here to ensure the database is created and migrated
+// before the application starts.
+// This is a bad practice and should be avoided in production.
+await app.InitialiseDatabaseAsync();
 
 app.UseSwaggerExtension();
 
