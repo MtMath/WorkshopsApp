@@ -5,9 +5,7 @@
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
-    links:
-      - sqlserver
+      - "8080:8080"
     depends_on:
       - sqlserver
     networks:
@@ -17,7 +15,7 @@
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
     env_file:
-      - .env.dev
+      - .env
     environment:
       MSSQL_SA_PASSWORD: ${DB_PASS}
       ACCEPT_EULA: "Y"
@@ -25,6 +23,8 @@
       - "1433:1433"
     volumes:
       - sqlserver-data:/var/opt/mssql
+    networks:
+      - backend
 
   prometheus:
     image: prom/prometheus
@@ -53,3 +53,7 @@ volumes:
 networks:
   backend:
     driver: bridge
+    ipam:
+      config:
+        - subnet: "10.0.0.0/19"
+          gateway: "10.0.0.1"

@@ -1,8 +1,53 @@
-@Workshops.Web_HostAddress = http://localhost:5246
-@ApiVersion = 1
+@HostAddress = http://localhost:8080
+@ApiVersion = v1
 
-GET {{Workshops.Web_HostAddress}}/v1{{ApiVersion}}/Workshops/
+###
+
+#Get All
+GET {{HostAddress}}/{{ApiVersion}}/Workshops/
 Accept: application/json
 
 ###
 
+#Get by Id
+
+Get {{HostAddress}}/{{ApiVersion}}/Workshops/{{id}}
+Accept: application/json
+
+###
+
+#
+GET {{HostAddress}}/{{ApiVersion}}/Workshops/{{id}}/attendees-record
+Accept: application/json
+
+###
+
+#Create
+POST {{HostAddress}}/{{ApiVersion}}/Workshops/
+Accept: application/json
+{
+  "title": "string",
+  "description": "string",
+  "date": "2025-03-17T03:38:41.951Z",
+  "capacity": 0
+}
+
+###
+
+#Update
+PUT {{HostAddress}}/{{ApiVersion}}/Workshops/{{id}}
+Accept: application/json
+{
+  "title": "string",
+  "description": "string",
+  "date": "2025-03-17T03:38:41.951Z",
+  "capacity": 0
+}
+
+###
+
+#Delete
+DELETE {{HostAddress}}/{{ApiVersion}}/Workshops/{{id}}
+Accept: application/json
+
+###
