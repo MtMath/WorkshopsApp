@@ -20,6 +20,8 @@ public static class IoC
         services.AddRepositories();
         services.AddIdentity(configuration);
 
+        services.AddScoped<ContextInitializer.ApplicationDbContextInitialiser>();
+        
         return services;
     }
 
@@ -33,6 +35,7 @@ public static class IoC
             options.UseSqlServer(connectionString, builder =>
             {
                 builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "Application");
+                builder.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
                 builder.EnableRetryOnFailure(3);
             });
 
@@ -46,10 +49,9 @@ public static class IoC
             options.UseSqlServer(connectionString, builder =>
             {
                 builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "Identity");
+                builder.MigrationsAssembly(typeof(AppIdentityDbContext).Assembly.FullName);
                 builder.EnableRetryOnFailure(3);
             });
-
-            options.EnableSensitiveDataLogging();
         });
     }
 
