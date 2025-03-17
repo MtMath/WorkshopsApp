@@ -1,9 +1,13 @@
+using System.Linq.Expressions;
+
 namespace Workshops.Domain.Interfaces;
 
 public interface IRepository<TEntity> 
 {
     Task<List<TEntity>> GetAllAsync();
     Task<TEntity?> GetByIdAsync(int id);
+
+    Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
     IQueryable<TEntity> GetQueryable();
     

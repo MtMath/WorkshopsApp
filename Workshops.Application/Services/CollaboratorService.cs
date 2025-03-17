@@ -5,6 +5,10 @@ using Workshops.Domain.Interfaces;
 
 namespace Workshops.Application.Services;
 
+public interface ICollaboratorService
+{
+}
+
 public class CollaboratorService(IRepository<CollaboratorEntity> collaboratorRepository, ILogger<CollaboratorService> logger) : ICollaboratorService
 {
     public async Task<List<CollaboratorEntity>> GetCollaborators()
@@ -47,7 +51,7 @@ public class CollaboratorService(IRepository<CollaboratorEntity> collaboratorRep
         return collaborator;
     }
     
-    public async Task UpdateCollaboratorAsync(int id, CollaboratorRequestDto collaboratorDto)
+    public async Task<CollaboratorEntity> UpdateCollaboratorAsync(int id, CollaboratorRequestDto collaboratorDto)
     {
         var collaborator = await GetCollaboratorById(id);
         
@@ -58,6 +62,8 @@ public class CollaboratorService(IRepository<CollaboratorEntity> collaboratorRep
         
         collaboratorRepository.Update(collaborator);
         await collaboratorRepository.SaveChangesAsync();
+        
+        return collaborator;
     }
     
     public async Task DeleteCollaborator(int id)
@@ -69,8 +75,4 @@ public class CollaboratorService(IRepository<CollaboratorEntity> collaboratorRep
         collaboratorRepository.Delete(collaborator);
         await collaboratorRepository.SaveChangesAsync();
     }
-}
-
-public interface ICollaboratorService
-{
 }

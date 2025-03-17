@@ -54,6 +54,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<AttendeesRecordEntity>(entity =>
         {
             entity.HasKey(e => e.Id);
+            entity.HasIndex(e => new { e.WorkshopId, e.CollaboratorId })
+                .IsUnique();
             entity.HasOne(e => e.Workshop)
                 .WithMany(e => e.Attendees)
                 .HasForeignKey(e => e.WorkshopId);

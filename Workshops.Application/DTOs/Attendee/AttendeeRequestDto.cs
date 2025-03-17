@@ -5,7 +5,8 @@ namespace Workshops.Application.DTOs.Attendee;
 
 public record struct AttendeeRequestDto
 {
-    [Required] public int Id { get; set; }
+    [Required] public int WorkshopId { get; init; }
+    [Required] public int CollaboratorId { get; init; }
     
-    [Required] public string Slug { get; set; }
+    public bool? Attended { get; set; }
 }
