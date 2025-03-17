@@ -41,6 +41,19 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
         }
     }
 
+    public async Task<List<AttendeesRecordEntity>> GetAttendeesByWorkshopIdAsync(int workshopId)
+    {
+        var workshop = await workshopsRepository.GetQueryable()
+            .Include(workshop => workshop.Attendees)
+            .Where(workshop => workshop.Id.Equals(workshopId))
+            .FirstOrDefaultAsync();
+
+        if (workshop == null)
+            throw new ArgumentException("Workshop or AttendeesRecord not found.");
+
+        return workshop.Attendees.ToList();
+    }
+
     public async Task<WorkshopsEntity> InsertWorkshopAsync(WorkshopRequestDto workshopDto)
     {
         var slug = SlugHelper.GenerateSlug(workshopDto.Title);
@@ -52,9 +65,8 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
 
         if (slugExists)
         {
-            
             logger.LogWarning("Workshop with Slug {Slug} already exists.", slug);
-            
+
             var counter = 1;
             do
             {
@@ -76,16 +88,16 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
 
         await workshopsRepository.Insert(workshop);
         await workshopsRepository.SaveChangesAsync();
-        
+
         //TODO: Send a command to generate attendance sheets for this workshop
         //Now I can generate Attendance Sheets for this workshop, since it was created successfully
         //This is a good moment (example) to use the MediatR library to send a command to another handler
-        
+
         //TODO: For now Generate a AttendanceRecordService for simplicity
 
         return workshop;
     }
-    
+
     public async Task<WorkshopsEntity> UpdateWorkshopAsync(int id, WorkshopRequestDto workshopDto)
     {
         var workshop = await GetWorkshopByIdAsync(id);
@@ -97,7 +109,7 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
         workshop.Name = workshopDto.Title;
         workshop.Description = workshopDto.Description;
         workshop.RealizationDate = workshopDto.Date;
-        
+
         if (workshopDto.Capacity.HasValue)
             workshop.Capacity = workshopDto.Capacity.Value;
 
@@ -106,7 +118,7 @@ public class WorkshopsService(IRepository<WorkshopsEntity> workshopsRepository, 
 
         return workshop;
     }
-    
+
     public async Task DeleteWorkshopAsync(int id)
     {
         var workshop = await GetWorkshopByIdAsync(id);
