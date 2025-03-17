@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/MtMath/WorkshopsApp/compare/v1.2.0...v1.2.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* Set cors for security ([ad794ca](https://github.com/MtMath/WorkshopsApp/commit/ad794caf1c2a4a69b188030fd8ebb93d3ec0b351))
+
 # [1.2.0](https://github.com/MtMath/WorkshopsApp/compare/v1.1.0...v1.2.0) (2025-03-17)
 
 
