@@ -7,6 +7,7 @@ using Workshops.Infrastructure.Data;
 using Workshops.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 builder.Services
     .AddApplicationLayer()
@@ -14,6 +15,8 @@ builder.Services
 
 builder.Services.AddExceptionHandler<AppExceptionHandler>();
 builder.Services.AddProblemDetails();
+
+builder.Services.AddCors();
 
 builder.Services.AddControllers(options => options.Conventions.Add(new RoutePrefixConvention("api")));
 
@@ -31,6 +34,8 @@ var app = builder.Build();
 await app.InitialiseDatabaseAsync();
 
 app.UseSwaggerExtension();
+
+app.UseCors(options => options.WithOrigins(configuration["AllowedHosts"]!).AllowAnyMethod().AllowAnyHeader());
 
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
