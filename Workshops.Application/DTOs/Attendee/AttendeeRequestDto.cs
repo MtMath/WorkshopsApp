@@ -8,5 +8,5 @@ public record struct AttendeeRequestDto
     [Required] public int WorkshopId { get; init; }
     [Required] public int CollaboratorId { get; init; }
     
-    public string? Slug { get; set; }
+    public bool? Attended { get; set; }
 }
