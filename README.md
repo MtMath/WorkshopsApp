@@ -62,6 +62,11 @@ A solução está organizada em quatro projetos principais, seguindo o padrão d
 2. **Configurar variáveis de ambiente**:
     - Copie os envs para `.env` e preencha os valores necessários (ex.: string de conexão com o banco de dados).
 
+    ```bash
+    // .env
+    DB_PASS="PASSWORD"
+    ```
+
 3. **Build e execução com Docker Compose**:
    ```bash
    docker-compose up --build
@@ -83,7 +88,6 @@ Para aplicar as migrações do Entity Framework Core, execute os seguintes coman
 ```bash
 make migrate
 ```
-
 
 ### Payloads de Exemplo
 
@@ -144,3 +148,16 @@ GET Collaborators
   "timestamp": "2025-03-17T12:16:06.409Z"
 }
 ```
+
+### Roadmap
+
+1. Logging Infrastructure
+2. CQRS Implementation
+3. Prometheus Monitoring
+4. Grafana Dashboards
+
+### Known Issues
+
+- Validação do comprimento do slug: slugs que excedem 50 caracteres disparam erros de inserção no banco de dados. O sistema atual não tem validação adequada para evitar esse problema.
+- Implementação de slug não utilizada: o sistema tem um campo slug definido no esquema do banco de dados, mas ele não está sendo usado atualmente na funcionalidade de roteamento ou geração de URL.
+- ...
