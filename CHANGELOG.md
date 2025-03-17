@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/MtMath/WorkshopsApp/compare/v1.2.1...v1.2.2) (2025-03-17)
+
+
+### Bug Fixes
+
+* Typo in Collaborator controller ([b0733d2](https://github.com/MtMath/WorkshopsApp/commit/b0733d2bcd07b04a2c235f19c99fd90e07f07e32))
+
 ## [1.2.1](https://github.com/MtMath/WorkshopsApp/compare/v1.2.0...v1.2.1) (2025-03-17)
 
 
