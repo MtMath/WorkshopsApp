@@ -36,6 +36,7 @@ public static class IoC
                 builder.EnableRetryOnFailure(3);
             });
 
+            options.UseLazyLoadingProxies();
             options.EnableSensitiveDataLogging();
         });
 

@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Workshops.Domain.Common;
 using Workshops.Domain.Interfaces;
@@ -15,6 +16,11 @@ public class Repository<TEntity>(AppDbContext context) : IRepository<TEntity>, I
     public async Task<TEntity?> GetByIdAsync(int id)
     {
         return await context.Set<TEntity>().FindAsync(id);
+    }
+
+    public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate)
+    {
+        return await context.Set<TEntity>().FindAsync(predicate);
     }
 
     public IQueryable<TEntity> GetQueryable()

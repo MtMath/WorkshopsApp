@@ -6,7 +6,7 @@ namespace Workshops.Domain.Entities;
 /// <summary>
 /// Represents a collaborator in the workshops system, who can attend workshops.
 /// </summary>
-public sealed class CollaboratorEntity : Entity
+public class CollaboratorEntity : Entity
 {
     /// <summary>
     /// Gets or sets the name of the collaborator.
@@ -16,5 +16,5 @@ public sealed class CollaboratorEntity : Entity
     /// <summary>
     /// Gets or sets the collection of attendance records associated with the collaborator.
     /// </summary>
-    public ICollection<AttendeesRecordEntity> Attendances { get; set; }
+    public virtual ICollection<AttendeesRecordEntity> Attendances { get; set; } = new List<AttendeesRecordEntity>();
 }
