@@ -48,6 +48,22 @@ public class WorkshopsController(WorkshopsService workshopsService) : Controller
         return Ok(response);
     }
     
+    [HttpGet("{id:int}/attendees-record", Order = 3), AllowAnonymous]
+    [ProducesResponseType(typeof(GenericResponseDto<List<AttendeesRecordEntity>>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<GenericResponseDto<List<AttendeesRecordEntity>>>> GetAttedeeRecord(int id)
+    {
+        
+        var attendees = await workshopsService.GetAttendeesByWorkshopIdAsync(id);
+        
+        var response = new GenericResponseDto<List<AttendeesRecordEntity>>
+        {
+            Data = attendees,
+            Message = "Attendees retrieved successfully.",
+        };
+        
+        return Ok(response);
+    }
+    
     [HttpPost, Authorize]
     [ProducesResponseType(typeof(GenericResponseDto<WorkshopsEntity>), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -100,8 +116,6 @@ public class WorkshopsController(WorkshopsService workshopsService) : Controller
             //just to make it more clear or to confirm the resource is not there.
             return NotFound();
         }
-        
-        
         return NoContent();
     }
 }
