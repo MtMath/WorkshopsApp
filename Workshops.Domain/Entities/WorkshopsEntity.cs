@@ -6,7 +6,7 @@ namespace Workshops.Domain.Entities;
 /// <summary>
 /// Represents a workshop in the workshops system with its details and attendance records.
 /// </summary>
-public sealed class WorkshopsEntity : Entity
+public class WorkshopsEntity : Entity
 {
     /// <summary>
     /// Gets or sets the name of the workshop.
@@ -28,8 +28,9 @@ public sealed class WorkshopsEntity : Entity
     /// Maximum number of attendees
     /// </summary>
     public int? Capacity { get; set; }
+
     /// <summary>
     /// Gets or sets the attendees of the workshop.
     /// </summary>
-    public ICollection<AttendeesRecordEntity> Attendees { get; set; }
+    public virtual ICollection<AttendeesRecordEntity> Attendees { get; set; } = new List<AttendeesRecordEntity>();
 }
